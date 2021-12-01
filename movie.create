@@ -1,0 +1,29 @@
+create table customer1(
+	customer_id SERIAL primary key,
+	first_name VARCHAR(20),
+	last_name VARCHAR(20)
+);
+create table tickets(
+	ticket_id SERIAL primary key,
+	price NUMERIC(5,2),
+	customer_id INTEGER,
+	foreign key(customer_id) references customer1(customer_id),
+	movie_id INTEGER not null,
+	foreign key(movie_id) references movies(movie_id)
+);
+
+create table movies(
+	movie_id SERIAL primary key,
+	title VARCHAR(30),
+	rating VARCHAR(30)
+)
+
+create table concession(
+	product_id SERIAL primary key,
+	product_name VARCHAR(30),
+	price NUMERIC(5,2),
+	inventory INTEGER,
+	customer_id INTEGER not null,
+	foreign key (customer_id) references customer1(customer_id)
+)
+select* from movies
